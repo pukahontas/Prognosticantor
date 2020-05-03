@@ -1,0 +1,46 @@
+doctype html
+html
+	head
+		title Ethan Calls It
+		link(type="text/css" href="/style.css" rel="Stylesheet")
+		link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+	body
+		div.header
+			img.ethan-head(src = "ethan-head.jpg")
+		div.feed
+			div.spacer
+				div.sticky
+					h1 Ethan Calls It
+			
+			div.call
+				div.sticky
+					h2 Title of the call
+					span.submit-time Submitted on May 02, 2020 at 3:33pm
+					span.material-icons.verify(alt="Verified by Nate")
+					dl
+						dt Made on
+						dd March 21, 2019
+						dt Witnessed by
+						dd Tess Liebersohn
+						dt Verification Date
+						dd November 06, 2020
+						dt Status
+						dd Pending
+					p
+					| This is the description of the call, if there is any more information that needs to go here, this is where to put it.
+			
+			div.call
+				div.sticky
+					h2 Title of the call
+					p.submit-time Submitted on May 02, 2020 at 3:33pm
+					dl
+						dt Verified by
+						dd Tess Liebersohn
+						dt End Date
+						dd November 06, 2020 at 8:00pm
+					p
+					| This is the description of the call, if there is any more information that needs to go here, this is where to put it.
+		div.footer
+			| Are you Ethan?
+			button Call it!
+			
