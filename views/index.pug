@@ -12,34 +12,28 @@ html
 				div.sticky
 					h1 Ethan Calls It
 			
-			div.call
-				div.sticky
-					h2 Title of the call
-					span.submit-time Submitted on May 02, 2020 at 3:33pm
-					span.material-icons.verify(alt="Verified by Nate")
-					dl
-						dt Made on
-						dd March 21, 2019
-						dt Witnessed by
-						dd Tess Liebersohn
-						dt Verification Date
-						dd November 06, 2020
-						dt Status
-						dd Pending
-					p
-					| This is the description of the call, if there is any more information that needs to go here, this is where to put it.
-			
-			div.call
-				div.sticky
-					h2 Title of the call
-					p.submit-time Submitted on May 02, 2020 at 3:33pm
-					dl
-						dt Verified by
-						dd Tess Liebersohn
-						dt End Date
-						dd November 06, 2020 at 8:00pm
-					p
-					| This is the description of the call, if there is any more information that needs to go here, this is where to put it.
+			each record in results.calls
+				a(id="call-"+record.id)
+				div.call
+					div.sticky
+						h2= record.title
+						span.material-icons.witnessed(class=record.witnessedby ? "yes" : "no", title=record.witnessedby ? (`Witnessed by ${record.witnessedby}` + (record.witnessedtime ? ` on ${record.witnessedtime}` : '')) : 'Not witnessed yet')
+						span.submit-time Submitted on #{dateFormat(record.timestamp)}
+						
+						dl
+							div
+								dt Made on
+								dd= dateFormat(record.calldate, 'longDate')
+							div
+								dt Witnessed by
+								dd= record.witnessedby || "Not witnessed yet" 
+							div
+								dt Expiry Date
+								dd= expiryDate ? dateFormat(record.expirydate, 'longDate') : "Open ended"
+							div
+								dt Status
+								dd= record.status
+						p= record.description || ""
 		div.footer
 			| Are you Ethan?
 			button Call it!
