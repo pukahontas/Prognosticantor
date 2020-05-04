@@ -18,7 +18,10 @@ html
 					div.sticky
 						h2= record.title
 						span.material-icons.witnessed(class=record.witnessedby ? "yes" : "no", title=record.witnessedby ? (`Witnessed by ${record.witnessedby}` + (record.witnessedtime ? ` on ${record.witnessedtime}` : '')) : 'Not witnessed yet')
-						span.submit-time Submitted on #{dateFormat(record.timestamp)}
+						span.submit-time
+							| Submitted on #{dateFormat(record.timestamp)}
+							if record.submittedby
+								|  by #{record.submittedby}
 						
 						dl
 							div

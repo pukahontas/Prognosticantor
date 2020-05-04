@@ -15,6 +15,8 @@ LEFT JOIN status
 	ON calls.status = status.statusid 
 LEFT JOIN (SELECT userid as witnessid, CONCAT(firstname, ' ', lastname) as witnessedby FROM users) as witness
 	ON calls.witnessedBy = witness.witnessid
+LEFT JOIN (SELECT userid as submitid, CONCAT(firstname, ' ', lastname) as submittedby FROM users) as submit
+	ON calls.submittedby = submit.submitid
 INNER JOIN (SELECT callid, max(update) as maxUpdate FROM calls GROUP BY callid) as x 
 	ON calls.callid = x.callid WHERE update = maxUpdate
 ORDER BY calls.callid = 6 DESC, calldate DESC`;
