@@ -18,7 +18,8 @@ LEFT JOIN (SELECT userid as witnessid, CONCAT(firstname, ' ', lastname) as witne
 LEFT JOIN (SELECT userid as submitid, CONCAT(firstname, ' ', lastname) as submittedby FROM users) as submit
 	ON calls.submittedby = submit.submitid
 INNER JOIN (SELECT callid, max(update) as maxUpdate FROM calls GROUP BY callid) as x 
-	ON calls.callid = x.callid WHERE update = maxUpdate
+	ON calls.callid = x.callid
+WHERE update = maxUpdate AND calls.status != 6
 ORDER BY calls.callid = 6 DESC, calldate DESC`;
       const result = await client.query(q);
       const results = { 'calls': (result) ? result.rows : null};
