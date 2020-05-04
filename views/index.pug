@@ -6,14 +6,14 @@ html
 		link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
 	body
 		div.header
-			img.ethan-head(src = "ethan-head.jpg")
+			//img.ethan-head(src = "ethan-head.jpg")
 		div.feed
 			div.spacer
 				div.sticky
 					h1 Ethan Calls It
 			
 			each record in results.calls
-				a(id="call-"+record.id)
+				a(id="call-"+record.callid)
 				div.call
 					div.sticky
 						h2= record.title
@@ -36,5 +36,6 @@ html
 						p= record.description || ""
 		div.footer
 			| Are you Ethan?
-			button Call it!
+			a(href="/actions")
+				button Call it!
 			

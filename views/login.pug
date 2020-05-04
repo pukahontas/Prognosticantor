@@ -1,0 +1,17 @@
+doctype html
+html
+	head
+		title Ethan Calls It | Log in
+		link(type="text/css" href="/actions.css" rel="Stylesheet")
+		link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+	body.login
+		div.page
+			form.login(action="/actions" method="post")
+				h2 Login
+				input(name="user" type="text" placeholder="User")
+				input(name="pw" type="password" placeholder="Password")
+				button#submit(type="submit") Login
+			if (error)
+				div.login-error
+					span.material-icons error_outline
+					span Unable to log in to that account

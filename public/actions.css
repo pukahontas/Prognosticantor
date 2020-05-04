@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Shrikhand&display=swap');
+
+body {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+	background-color: #fefefe;
+}
+
+* {
+	font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Shrikhand', sans-serif;
+	color: #ffe082;
+}
+
+h1 {
+	height: 10vh;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	font-size: 8vh;
+	margin: 0;
+	text-align: center;
+}
+
+.page {
+	box-sizing: border-box;
+	padding-top: 15vh;
+	min-height: 100vh;
+	background-color: inherit;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+form {
+	display:flex;
+	flex-direction: column;
+	border: solid 1.5px #ffe082;
+	border-radius: .4em;
+	padding: 1em 1em .5em;
+	width: 80vw;
+	max-width: 40em;
+	background-color: inherit;
+}
+
+form input[type="text"], form input:not([type]) {
+	width: 100%;
+}
+
+form input, form button, form textarea {
+	box-sizing: border-box;
+	margin: .25em 0;
+	border: solid 1px #ddd;
+	border-radius: .2em;
+	font-size: 120%;
+	padding: .2em;
+}
+
+form input[type="date"] {
+	width: 11em;
+}
+
+form > label {
+	padding-top: 1.6em;
+	font-size: 60%;
+}
+
+form .info input {
+	padding-right: 1.2em;
+}
+
+form .info span.material-icons {
+	color: #b0bec5;
+	cursor: default;
+	margin-left: -1.2em;
+	font-size: 120%;
+	vertical-align: unset;
+}
+
+form textarea {
+	font-size: 100%;
+}
+
+form .confirm {
+	margin-top: 1.6em;
+}
+
+form .confirm input {
+	margin-right: .5em;
+}
+
+form button {
+	font-size: 120%;
+	font-weight: bold;
+	align-self: flex-end;
+	width: auto;
+	cursor: pointer;
+	color: #ffe082;
+	background-color: #fffdf5;
+	border: solid 1.5px #ffe082;
+	padding: .2em 1em;
+	font-size: 120%;
+}
+
+form button:hover {
+	color: white;
+	border-color #ffe082;
+	background-color: #ffe082;
+}
+
+form button .cloud {
+	margin-left: .5em;
+	vertical-align: bottom;
+}
+
+form h2 {
+	font-size: 180%;
+	background-color: inherit;
+	transform: translateY(-50%);
+	padding: 0 .6em;
+	margin: -1em 0 0 0;
+	position: absolute;
+}
+
+/*** Actions Form Styles ***/
+
+/*** Login Form Styles ***/
+form.login {
+	width: 20em;
+}
+
+.login-error {
+	width: 20em;
+	background: #fce4ec;
+	border: solid 1.5px #f8bbd0;
+	color: #ad1457;
+	border-radius: .4em;
+	padding: 1em 1em;
+	margin-top: 1em;
+	text-align: center;
+	display: flex;
+	align-items: center;
+}
+.login-error span {
+	padding-right: .8em;
+}

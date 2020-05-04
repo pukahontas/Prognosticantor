@@ -35,22 +35,24 @@ dt {
 	position: fixed;
 	top: 0px;
 	left: 0px;
+	width: 100vw;
+	height: 100vh;
 	z-index: -100;
+	background: top right / cover url(/ethan-head.jpg);
 }
 
 img.ethan-head {
 	background-size: contain;
 	width: 100%;
-	mask-image: linear-gradient(rgba(0, 0, 0, 1.0) 95%, transparent);
-	-webkit-mask-image: linear-gradient(rgba(0, 0, 0, 1.0) 95%, transparent);
+	/*mask-image: linear-gradient(rgba(0, 0, 0, 1.0) 95%, transparent);
+	-webkit-mask-image: linear-gradient(rgba(0, 0, 0, 1.0) 95%, transparent);*/
 }
 
 .feed {
 	box-sizing: border-box;
 	height: 100%;
-	width: 100%;
+	width: 50vw;
 	padding-left: 6vw;
-	padding-right: 50vw;
 }
 
 .feed .sticky {
@@ -69,7 +71,7 @@ img.ethan-head {
 }
 
 .call {
-	height: 140vh;
+	height: 120vh;
 	margin-top: 6vh;
 	margin-bottom: 50vh;
 }
@@ -119,6 +121,37 @@ img.ethan-head {
 	right: 4%;
 	bottom: 2%;
 }
+
+.footer button {
+	font-family: 'Shrikhand', sans-serif;
+	font-size: 100%;
+	margin-left: .6em;
+	width: auto;
+	cursor: pointer;
+	color: #fefefe;
+	background-color: transparent;
+	border: solid 1.5px #fefefe;
+	border-radius: .2em;
+	padding: .2em .5em;
+	vertical-align: middle;
+}
+
+.footer button:hover {
+	color: #444;
+	background-color: #fefefe;
+	border: solid 1.5px #fefefe;
+}
+
+@media (max-aspect-ratio: 4/3) {
+	.header {
+		background: top / cover url(/ethan-head.jpg);
+	}
+	
+	.feed {
+		width: 80vw;
+	}
+}
+
 
 .material-icons {
   font-family: 'Material Icons';

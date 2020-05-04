@@ -11,14 +11,16 @@ module.exports = async (req, res) => {
       const client = await pool.connect();
 	  const q = 
 		`SELECT * FROM calls 
-		LEFT JOIN (SELECT id as statusid, status as status FROM status) as status
-			ON calls.status = status.statusid 
-		LEFT JOIN (SELECT id as witnessid, CONCAT(firstname, ' ', lastname) as witnessedby FROM users) as witness
-			ON calls.witnessedBy = witness.witnessid 
-		ORDER BY timestamp DESC`;
+LEFT JOIN status
+	ON calls.status = status.statusid 
+LEFT JOIN (SELECT userid as witnessid, CONCAT(firstname, ' ', lastname) as witnessedby FROM users) as witness
+	ON calls.witnessedBy = witness.witnessid
+INNER JOIN (SELECT callid, max(update) as maxUpdate FROM calls GROUP BY callid) as x 
+	ON calls.callid = x.callid WHERE update = maxUpdate
+ORDER BY calldate DESC`;
       const result = await client.query(q);
       const results = { 'calls': (result) ? result.rows : null};
-	  console.log(results);
+	  //console.log(results);
       res.render('index', {results, dateFormat} );
       client.release();
     } catch (err) {
