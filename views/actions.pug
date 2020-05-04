@@ -18,7 +18,7 @@ html
 					span.material-icons(title="This is the call. Make it short and sweet. You can clarify it below") info
 				label(for="call-date") Date Made (optional)
 				span.info
-					input(name="calldate" id="call-date" type="date")
+					input(name="calldate" id="call-date" type="date" value=(new Date()).toISOString().slice(0, 10))
 					span.material-icons(title="The date the call was made (if not today)") info
 				label(for="expiry") Expiration Date (optional)
 				span.info

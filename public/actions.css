@@ -39,6 +39,10 @@ h1 {
 	align-items: center;
 }
 
+.page.no-header {
+	padding-top: 0;
+}
+
 form {
 	display:flex;
 	flex-direction: column;
@@ -90,6 +94,7 @@ form textarea {
 
 form .confirm {
 	margin-top: 1.6em;
+	margin-bottom: -2em;
 }
 
 form .confirm input {

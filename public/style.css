@@ -6,7 +6,7 @@ body {
 	border: 0;
 	font-family: 'Montserrat', sans-serif;
 	color: white;
-	font-size: 1.4vw;
+	font-size: 1.2rem;
 	background-color: #eee;
 }
 
@@ -17,12 +17,12 @@ h1, h2, h3, h4, h5, h6, dt {
 }
 
 h1 {
-	font-size: 6vw;
+	font-size: 5.5rem;
 	color: #ffe082;
 }
 
 h2 {
-	font-size: 3vw;
+	font-size: 2.7rem;
 	color: #ffecb3;
 	line-height: 1.1em;
 }
@@ -38,7 +38,7 @@ dt {
 	width: 100vw;
 	height: 100vh;
 	z-index: -100;
-	background: top right / cover url(/ethan-head.jpg);
+	background: top left 60% / cover url(/ethan-head.jpg);
 }
 
 img.ethan-head {
@@ -143,12 +143,12 @@ img.ethan-head {
 }
 
 @media (max-aspect-ratio: 4/3) {
-	.header {
-		background: top / cover url(/ethan-head.jpg);
-	}
-	
 	.feed {
 		width: 80vw;
+	}
+	
+	.footer label {
+		display:none;
 	}
 }
 

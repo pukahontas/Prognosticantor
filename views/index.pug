@@ -35,7 +35,7 @@ html
 								dd= record.status
 						p= record.description || ""
 		div.footer
-			| Are you Ethan?
-			a(href="/actions")
+			label(for="action-button") Are you Ethan?
+			a(id="action-button" href="/actions")
 				button Call it!
 			
