@@ -33,7 +33,9 @@ html
 							div
 								dt Status
 								dd= record.status
-						p= record.description || ""
+						if record.description
+							for para in record.description.split("\n")
+								p= para
 		div.footer
 			label(for="action-button") Are you Ethan?
 			a(id="action-button" href="/actions")

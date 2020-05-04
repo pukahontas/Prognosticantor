@@ -114,6 +114,10 @@ img.ethan-head {
 	font-style: italic;
 }
 
+.call p {
+	margin: 1em 0;
+}
+
 
 .footer {
 	text-align: right;
