@@ -29,7 +29,7 @@ html
 								dd= record.witnessedby || "Not witnessed yet" 
 							div
 								dt Expiry Date
-								dd= expiryDate ? dateFormat(record.expirydate, 'longDate') : "Open ended"
+								dd= record.expirydate ? dateFormat(record.expirydate, 'longDate') : "Open ended"
 							div
 								dt Status
 								dd= record.status
