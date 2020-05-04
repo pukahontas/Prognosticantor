@@ -17,7 +17,7 @@ LEFT JOIN (SELECT userid as witnessid, CONCAT(firstname, ' ', lastname) as witne
 	ON calls.witnessedBy = witness.witnessid
 INNER JOIN (SELECT callid, max(update) as maxUpdate FROM calls GROUP BY callid) as x 
 	ON calls.callid = x.callid WHERE update = maxUpdate
-ORDER BY calldate DESC`;
+ORDER BY calls.callid = 6 DESC, calldate DESC`;
       const result = await client.query(q);
       const results = { 'calls': (result) ? result.rows : null};
 	  //console.log(results);
