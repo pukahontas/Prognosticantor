@@ -1,3 +1,4 @@
+global.__basedir = __dirname;
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
