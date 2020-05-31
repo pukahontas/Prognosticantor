@@ -1,15 +1,9 @@
 const {check, validationResult} = require('express-validator')
-const { Pool } = require('pg');
-const pool = new Pool({
-	user: 'postgres',
-	connectionString: process.env.DATABASE_URL,
-	ssl: false
-});
+const db = require(__basedir + '/config/db.js');
+const email = require(__basedir + '/config/email.js');
 
 module.exports = async (req, res) => {
 	try {
-		const client = await pool.connect();
-
 		const validationErrors = validationResult(req);
 		if (!validationErrors.isEmpty()) {
 			throw new Error("Input validation error:", validationErrors.array());
@@ -19,26 +13,25 @@ module.exports = async (req, res) => {
 		if (! /^[a-zA-Z0-9]{6,}$/.test(code))
 			throw new error("Password in invalid format")
 
-		const users = await client.query(`SELECT * FROM users WHERE code = '${code}'`);
+		const users = await db.get('callers', code);
 		
-		if (!users.rows || users.rows.length != 1)
-			throw new error ("Error looking up user")
-		const user = users.rows[0];
-		console.log(user)
-		if (!user.roles.includes(0) && !user.roles.includes(1))
-			throw new error ('User does not have caller priviledges')
+		if (users.length != 1)
+			throw new error ("Error looking up user or user does not have caller privileges: " + code)
+		
+		const user = users[0];
 		
 		const title = req.body.title;
 		const calldate = req.body.calldate || (new Date());
 		const expiry = req.body.expiry;
 		const desc = req.body.description;
 		
-		const query = "INSERT INTO calls (title, calldate, expirydate, description, submittedby, update, status) VALUES ("+[title, calldate, expiry, desc].map(strNull).join(', ') + ', ' + user.userid + ", 0, 0)";
-		console.log(query);
-		const result = await client.query(query);
-		
+		const query = "INSERT INTO calls (title, calldate, expirydate, description, submittedby, update, status) VALUES ("+[title, calldate, expiry, desc].map(strNull).join(', ') + ', ' + user.userid + ", 0, 0) RETURNING callid";
+		const result = await db.query(query);
+
+		console.log(1)
 		res.sendStatus(200);
-		client.release();
+		console.log(2)
+		email.newCall(result.rows[0].callid)
 	} catch (err) {
 		console.error(err);
 		res.render('actions', { error : true });

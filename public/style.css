@@ -11,7 +11,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, dt {
-	font-family: 'Shrikhand', sans-serif;
+	font-family: 'Shrikhand', 'Georgia', serif;
 	margin: 0;
 	padding: 0;
 }
@@ -31,7 +31,7 @@ dt {
 	color: #fff8e1;
 }
 
-.header {
+.background {
 	position: fixed;
 	top: 0px;
 	left: 0px;
@@ -41,11 +41,37 @@ dt {
 	background: top left 60% / cover url(/ethan-head.jpg);
 }
 
-img.ethan-head {
-	background-size: contain;
-	width: 100%;
-	/*mask-image: linear-gradient(rgba(0, 0, 0, 1.0) 95%, transparent);
-	-webkit-mask-image: linear-gradient(rgba(0, 0, 0, 1.0) 95%, transparent);*/
+.header {
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	text-align: middle;
+}
+
+.header a {
+	color: white;
+	text-decoration: none;
+}
+
+.header .alert {
+	font-size: 2rem;
+	transform: rotate(20deg);
+	vertical-align: text-bottom;
+	margin-left: 1rem;
+}
+
+.header .description {
+	font-family: 'Shrikhand', 'Georgia', serif;
+	max-width: 0px;
+	display: inline-block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-align: right;
+	transition: max-width .3s ease-out;
+}
+
+.header:hover .description {
+	max-width: 20em;
 }
 
 .feed {
@@ -146,7 +172,11 @@ img.ethan-head {
 	border: solid 1.5px #fefefe;
 }
 
-@media (max-aspect-ratio: 4/3) {
+@media (orientation: portrait) {
+	:root {
+		font-size: 2rem;
+	}
+	
 	.feed {
 		width: 80vw;
 	}
@@ -154,30 +184,4 @@ img.ethan-head {
 	.footer label {
 		display:none;
 	}
-}
-
-
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Support for IE. */
-  font-feature-settings: 'liga';
 }

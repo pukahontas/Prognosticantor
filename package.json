@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/pukahontas/Prognosticantor#readme",
   "dependencies": {
+    "@sendgrid/client": "^7.1.1",
     "body-parser": "^1.19.0",
     "dateformat": "^3.0.3",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.4.1",
     "https": "^1.0.0",
