@@ -4,7 +4,7 @@ html
 		title Ethan Calls It
 		link(type="text/css" href="/style.css" rel="Stylesheet")
 		link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
-	body
+	body(onscroll = "[...document.getElementsByClassName('scroll-attract')].map(el => el.style.opacity = 0)")
 		div.background
 		div.header
 			a(href="https://cdn.forms-content.sg-form.com/94a44029-9d9b-11ea-80bd-964075d68331" target="_blank")
@@ -30,18 +30,23 @@ html
 							div
 								dt Made on
 								dd= dateFormat(record.calldate, 'longDate')
-							div
+							//- div
 								dt Witnessed by
-								dd= record.witnessedby || "Not witnessed yet" 
+								dd= record.witnessedby || "Not witnessed yet" -//
 							div
 								dt Expiry Date
 								dd= record.expirydate ? dateFormat(record.expirydate, 'longDate') : "Open ended"
-							div
+							//- div
 								dt Status
-								dd= record.status
+								dd= record.status -//
 						if record.description
 							for para in record.description.split("\n")
 								p= para
+		div.scroll-attract
+			span.attract.material-icons expand_more
+			span.attract.material-icons expand_more
+			span.attract.material-icons expand_more
+			span.description Scroll down to see calls
 		div.footer
 			label(for="action-button") Are you Ethan?
 			a(id="action-button" href="/actions")

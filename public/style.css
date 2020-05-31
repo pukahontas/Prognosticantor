@@ -153,7 +153,7 @@ dt {
 }
 
 .footer button {
-	font-family: 'Shrikhand', sans-serif;
+	font-family: 'Shrikhand', 'Georgia', sans-serif;
 	font-size: 100%;
 	margin-left: .6em;
 	width: auto;
@@ -171,6 +171,47 @@ dt {
 	background-color: #fefefe;
 	border: solid 1.5px #fefefe;
 }
+
+.scroll-attract {
+	position: absolute;
+	bottom: 1em;
+	left: 6rem;
+	font-family: 'Shrikhand', 'Georgia', sans-serif;
+	font-size: 120%;
+	color: #ffecb3;
+	transition: opacity .5s linear;
+}
+
+.scroll-attract .attract {
+	animation: 3s linear 0s infinite running slideDown;
+	width: 1em;
+	margin-right: -1em; 
+	font-size: 150%;
+}
+.scroll-attract .attract:nth-child(2) {
+	animation-delay: -1s;
+}
+.scroll-attract .attract:nth-child(3) {
+	animation-delay: -2s;
+}
+
+.scroll-attract .description {
+	margin-left: 1.5em;
+}
+
+@keyframes slideDown {
+	0% { 
+		transform: translateY(-15%);
+		opacity: 0;
+	}
+	50% {
+		opacity: 100%;
+	}
+	100% {
+		transform: translateY(65%);
+		opacity: 0;
+	}
+}    
 
 @media (orientation: portrait) {
 	:root {
