@@ -5,10 +5,10 @@ const pool = new Pool({
 });
 
 // Perform a database query on the PostgresSQL
-exports.query = async (query) => {
+exports.query = async (query, ...args) => {
 	const client = await pool.connect();
 	try {
-		return client.query(query);
+		return client.query(query, ...args);
 	} catch (err) {
 		console.error(err);
 	} finally {
@@ -17,13 +17,13 @@ exports.query = async (query) => {
 }
 
 // Return just the results of a query
-exports.rows = async (query) => (await exports.query(query)).rows;
+exports.rows = async (query, ...args) => (await exports.query(query, ...args)).rows;
 
 // Define some common transactions by name
 exports.get = async (name, ...args) => {
 	const handler = common[name];
 	if (typeof handler === "string") {
-		return exports.rows(handler);
+		return exports.rows(handler, ...args);
 	} else if (typeof handler === "function")
 		return handler(...args);
 	else
@@ -31,8 +31,8 @@ exports.get = async (name, ...args) => {
 }
 
 const common = {
-	"users" : (code) => exports.rows(`SELECT userid, username, firstname, lastname, CONCAT(firstname, ' ', lastname) as fullname, ARRAY_AGG(description) as roles FROM users JOIN roles ON roles.roleid = ANY(users.roles) ${code ? `WHERE code = '${code}'` : '' } GROUP BY users.userid`),
-	"users by role" : (roles, code) => exports.rows(`SELECT userid, username, firstname, lastname, CONCAT(firstname, ' ', lastname) as fullname FROM users WHERE users.roles && '{${[roles].flat()}}' ${code ? `AND code = '${code}'` : '' }`),
+	"users" : (code) => exports.rows(`SELECT userid, username, firstname, lastname, CONCAT(firstname, ' ', lastname) as fullname, ARRAY_AGG(description) as roles FROM users JOIN roles ON roles.roleid = ANY(users.roles) ${code ? "WHERE code = $1" : '' } GROUP BY users.userid`, [code]),
+	"users by role" : (roles, code) => exports.rows(`SELECT userid, username, firstname, lastname, CONCAT(firstname, ' ', lastname) as fullname FROM users WHERE users.roles && '{${[roles].flat()}}' ${code ? `AND code = $1` : '' }`, [code]),
 	"admins" : (code) => common['users by role'](0, code),
 	"callers" : (code) => common['users by role'](1, code),
 	"witnesses" : (code) => common['users by role'](2, code),

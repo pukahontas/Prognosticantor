@@ -15,7 +15,7 @@ express()
 	.get('/', require('./routes/index.js'))
 	.get('/actions/:code', require('./routes/actions.js'))
 	.post('/actions/:code', 
-		[check('title').trim().escape(), check('calldate').toDate(), check('expiry').toDate(), check('description').trim().escape()], 
+		[check('title').trim(), check('calldate').toDate(), check('expiry').toDate(), check('description').trim()], 
 		require('./routes/submit.js')
 	)
 	.post('/actions', (req, res) => 

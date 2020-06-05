@@ -25,12 +25,14 @@ module.exports = async (req, res) => {
 		const expiry = req.body.expiry;
 		const desc = req.body.description;
 		
-		const query = "INSERT INTO calls (title, calldate, expirydate, description, submittedby, update, status) VALUES ("+[title, calldate, expiry, desc].map(strNull).join(', ') + ', ' + user.userid + ", 0, 0) RETURNING callid";
+		const query = {
+			text: "INSERT INTO calls (title, calldate, expirydate, description, submittedby, update, status) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING callid",
+			values: [title, calldate, expiry, desc, user.userid, 0, 0],
+		}
 		const result = await db.query(query);
 
-		console.log(1)
 		res.sendStatus(200);
-		console.log(2)
+
 		email.newCall(result.rows[0].callid)
 	} catch (err) {
 		console.error(err);
